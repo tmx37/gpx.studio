@@ -2,6 +2,7 @@ import type { Coordinates } from 'gpx';
 import { TrackPoint, distance } from 'gpx';
 import { settings } from '$lib/logic/settings';
 import { getElevation } from '$lib/utils';
+import { GRAPHHOPPER_URL } from '$lib/services';
 import { get } from 'svelte/store';
 
 const { routing, routingProfile, privateRoads } = settings;
@@ -109,7 +110,7 @@ async function getGraphHopperRoute(
     graphHopperProfile: string,
     privateRoads: boolean
 ): Promise<TrackPoint[]> {
-    let response = await fetch('https://graphhopper.gpx.studio/route', {
+    let response = await fetch(`${GRAPHHOPPER_URL}/route`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

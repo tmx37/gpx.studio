@@ -212,6 +212,10 @@ export class StyleManager {
                 throw new Error(`HTTP error fetching style "${styleInfo}": ${response.status}`);
             }
             const style = await response.json();
+            // Resolve relative sprite URLs (e.g. self-hosted styles) against the style URL
+            if (typeof style.sprite === 'string') {
+                style.sprite = new URL(style.sprite, new URL(styleUrl, window.location.href)).href;
+            }
             return style;
         } else {
             return styleInfo;

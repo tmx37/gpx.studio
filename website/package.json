@@ -7,6 +7,7 @@
         "build": "vite build",
         "prebuild": "npx tsx src/lib/scripts/pwa-manifest.ts",
         "postbuild": "npx tsx src/lib/scripts/sitemap.ts",
+        "local-styles": "npx tsx src/lib/scripts/local-styles.ts",
         "preview": "vite preview",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

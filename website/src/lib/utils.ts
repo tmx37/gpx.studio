@@ -7,6 +7,7 @@ import maplibregl from 'maplibre-gl';
 import { pointToTile, pointToTileFraction } from '@mapbox/tilebelt';
 import type { GPXStatisticsTree } from '$lib/logic/statistics-tree';
 import { ListTrackSegmentItem } from '$lib/components/file-list/file-list';
+import { ELEVATION_TILES_URL } from '$lib/services';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -121,7 +122,7 @@ export function getElevation(
     };
 
     let promises = uniqueTiles.map((tile) =>
-        fetch(`https://tiles.gpx.studio/mapterhorn/${ELEVATION_ZOOM}/${tile[0]}/${tile[1]}.webp`, {
+        fetch(`${ELEVATION_TILES_URL}/${ELEVATION_ZOOM}/${tile[0]}/${tile[1]}.webp`, {
             cache: 'force-cache',
         })
             .then((response) => response.blob())

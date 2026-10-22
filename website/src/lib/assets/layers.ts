@@ -27,14 +27,15 @@ import ignFrTopo from './custom/ign-fr-topo.json';
 import ignFrPlan from './custom/ign-fr-plan.json';
 import ignFrSatellite from './custom/ign-fr-satellite.json';
 import bikerouterGravel from './custom/bikerouter-gravel.json';
+import { ELEVATION_TILES_URL, STYLES_URL } from '$lib/services';
 
 export const maptilerKeyPlaceHolder = 'MAPTILER_KEY';
 
 export const basemaps: { [key: string]: string | StyleSpecification } = {
-    libertyTopo: 'https://styles.gpx.studio/liberty-topo.json',
-    libertySatellite: 'https://styles.gpx.studio/liberty-satellite.json',
-    osm: 'https://styles.gpx.studio/osm.json',
-    osmTopo: 'https://styles.gpx.studio/osm-topo.json',
+    libertyTopo: `${STYLES_URL}/liberty-topo.json`,
+    libertySatellite: `${STYLES_URL}/liberty-satellite.json`,
+    osm: `${STYLES_URL}/osm.json`,
+    osmTopo: `${STYLES_URL}/osm-topo.json`,
     esriSatellite: {
         version: 8,
         sources: {
@@ -1489,8 +1490,11 @@ export const overpassQueryData: Record<string, OverpassQueryData> = {
 export const terrainSources: { [key: string]: RasterDEMSourceSpecification } = {
     mapterhorn: {
         type: 'raster-dem',
-        url: 'https://tiles.gpx.studio/mapterhorn.json',
+        tiles: [`${ELEVATION_TILES_URL}/{z}/{x}/{y}.webp`],
+        tileSize: 512,
+        maxzoom: 12,
         encoding: 'terrarium',
+        attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>',
     },
 };
 
